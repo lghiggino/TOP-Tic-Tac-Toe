@@ -60,45 +60,28 @@ let player = {
 let victory = {
     checkForVictory: () => {
         console.log("is there a victory in this situation?")
+        // ticTacToe.allSquares.forEach(square => {
+        //     // square.dataset.value
+        //     console.log(square.id.slice(1,2), square.dataset.value)
+        // })
+        let inputs = []
         ticTacToe.allSquares.forEach(square => {
-            // square.dataset.value
-            console.log(square.id.slice(1,2), square.dataset.value)
+            inputs.push(square.innerText)
         })
+        console.log(inputs)
+        
+        for (i = 0; i< winningArray.length; i++){
+            if  (inputs[winningArray[i][0]] === "x" && inputs[winningArray[i][1]] ==="x" && inputs[winningArray[i][2]] === "x"){
+                console.log("X wins")
+                return
+            } if (inputs[winningArray[i][0]] === "o" && inputs[winningArray[i][1]] ==="o" && inputs[winningArray[i][2]] === "o"){
+                console.log("O wins")
+                return
+            } 
+        }
     },
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
