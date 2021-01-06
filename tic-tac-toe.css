@@ -5,7 +5,7 @@
     margin-top: 100px;
 }
 
-.q {
+.square {
     width: 100px;
     height: 100px;
     float: left;
@@ -18,8 +18,12 @@
     line-height: 100px;
 }
 
-.q:hover {
+.square:hover {
     background-color:rgba(243, 133, 82, 0.1);
+}
+
+.cell.hover{
+    background-color:rgba(57, 170, 23, 0.301);
 }
 
 #q0, #q1, #q2, #q3, #q4, #q5 {
@@ -64,4 +68,8 @@
     background-color: black;
     border: 1px solid white;
     color:white;
+}
+
+.unavailable{
+    cursor: not-allowed;
 }
