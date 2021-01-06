@@ -24,11 +24,29 @@ let ticTacToe = {
                 return
             }    
         },
-
-
-
-
-
+    blockPad : ()=>{
+        console.log(ticTacToe.allSquares)
+        ticTacToe.allSquares.forEach(square => {
+            //remove the event listener
+            square.removeEventListener("click", ticTacToe.makeMark)
+        })
+    },
+    modalPopUp : (playerMarker)=>{
+        const replayModal = document.getElementById("replayModal");
+        replayModal.classList.add("show");
+        const message = document.getElementById("message");
+        message.innerText = `${playerMarker} wins!`;
+        const replayBtn = document.getElementById("replayBtn");
+        replayBtn.addEventListener("click", () => {
+            ticTacToe.allSquares.forEach(square => {
+                square.innerText = ""
+                square.addEventListener("click", ticTacToe.makeMark)
+            })
+            player.humanTurn = true;
+            player.computerTurn = false;
+            replayModal.classList.remove("show");
+        })
+    }
 }
 
 let player = {
@@ -73,9 +91,17 @@ let victory = {
         for (i = 0; i< winningArray.length; i++){
             if  (inputs[winningArray[i][0]] === "x" && inputs[winningArray[i][1]] ==="x" && inputs[winningArray[i][2]] === "x"){
                 console.log("X wins")
+                ticTacToe.blockPad();
+                //popup do modal de vitória e restart
+                ticTacToe.modalPopUp("X");
+                inputs = [];
                 return
-            } if (inputs[winningArray[i][0]] === "o" && inputs[winningArray[i][1]] ==="o" && inputs[winningArray[i][2]] === "o"){
+            } else if (inputs[winningArray[i][0]] === "o" && inputs[winningArray[i][1]] ==="o" && inputs[winningArray[i][2]] === "o"){
                 console.log("O wins")
+                ticTacToe.blockPad();
+                //popup do modal de vitória e restart
+                ticTacToe.modalPopUp("O");
+                inputs = [];
                 return
             } 
         }
