@@ -3,7 +3,7 @@ const winningArray = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,
 let ticTacToe = {
     allSquares: document.querySelectorAll(".square"),
     makeMark : (e) => {
-        console.log(e.target.id, e.target.innerText, e.target.dataset.value)
+        //console.log(e.target.id, e.target.innerText, e.target.dataset.value)
             if (!e.target.innerText) {
                 if(player.humanTurn){
                     e.target.innerText = player.humanMarker;
@@ -35,7 +35,13 @@ let ticTacToe = {
         const replayModal = document.getElementById("replayModal");
         replayModal.classList.add("show");
         const message = document.getElementById("message");
-        message.innerText = `${playerMarker} wins!`;
+        //check if it was a tie or display the winner
+        if (playerMarker === "TIE"){
+            message.innerText = "It is a tie!"
+        }else {
+            message.innerText = `${playerMarker} wins!`;
+        } 
+        
         const replayBtn = document.getElementById("replayBtn");
         replayBtn.addEventListener("click", () => {
             ticTacToe.allSquares.forEach(square => {
@@ -103,7 +109,11 @@ let victory = {
                 ticTacToe.modalPopUp("O");
                 inputs = [];
                 return
-            } 
+            } else if (inputs.indexOf("") === -1){
+                ticTacToe.modalPopUp("TIE");
+                inputs = [];
+                return
+            }   
         }
     },
 
